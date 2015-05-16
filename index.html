@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Stars by sbertal</title>
-
+    <title>Go Flux Yourself</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -15,40 +14,57 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Stars</h1>
+        <h1>Go Flux Yourself</h1>
+        <p>A simple comparison of Flux libraries.</p>
       </header>
       <section>
-        
-
-<table>
-<thead>
-<tr>
-<th>Library</th>
-<th>Stars</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>fluxible</strong></td>
-<td><iframe src="https://ghbtns.com/github-btn.html?user=yahoo&repo=fluxible&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></td>
-</tr>
-<tr>
-<td><strong>alt</strong></td>
-<td><iframe src="https://ghbtns.com/github-btn.html?user=goatslacker&repo=alt&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></td>
-</tr>
-<tr>
-<td><strong>flummox</strong></td>
-<td><iframe src="https://ghbtns.com/github-btn.html?user=acdlite&repo=flummox&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></td>
-</tr>
-</tbody>
-</table>
+        <table>
+          <thead>
+            <tr>
+              <th>Library</th>
+              <th>Stars</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://git.corp.yahoo.com/sbertal">sbertal</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+
+    <script>
+    (function() {
+      var def = [
+        'yahoo/fluxible',
+        'goatslacker/alt',
+        'acdlite/flummox',
+        'BinaryMuse/fluxxor',
+        'martyjs/marty',
+        'kenwheeler/mcfly',
+        'spoike/refluxjs'
+      ];
+      var tbody = document.getElementsByTagName('tbody')[0];
+      var html = [];
+      def.forEach(function (lib) {
+        var split = lib.split('/');
+        var org = split[0];
+        var repo = split[1];
+        html.push(
+          '<tr>',
+            '<td>',
+              '<a href="https://github.com/' + org + '/' + repo + '">',
+                '<strong>' + repo + '</strong>',
+              '</a>',
+            '</td>',
+            '<td>',
+              '<iframe src="https://ghbtns.com/github-btn.html?user=' + org + '&repo=' + repo + '&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>',
+            '</td>',
+          '</tr>'
+        );
+      });
+      tbody.innerHTML = html.join('\n');
+    }());
+    </script>
+
   </body>
 </html>
