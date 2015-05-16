@@ -32,43 +32,49 @@
       </section>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-
-    <script>
+    <script src="javascripts/browser.min.js"></script>
+    <script type="text/babel">
     (function() {
-      var def = [
-        'yahoo/fluxible',
-        'goatslacker/alt',
-        'acdlite/flummox',
-        'BinaryMuse/fluxxor',
-        'martyjs/marty',
-        'kenwheeler/mcfly',
-        'spoike/refluxjs'
-      ];
-      var tbody = document.getElementsByTagName('tbody')[0];
-      var html = [];
-      def.forEach(function (lib) {
-        var split = lib.split('/');
-        var org = split[0];
-        var repo = split[1];
-        html.push(
-          '<tr>',
-            '<td>',
-              '<a href="https://github.com/' + org + '/' + repo + '">',
-                '<strong>' + repo + '</strong>',
-              '</a>',
-            '</td>',
-            '<td>',
-              '<iframe src="https://ghbtns.com/github-btn.html?user=' + org + '&repo=' + repo + '&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>',
-            '</td>',
-            '<td>',
-            '<iframe src="https://ghbtns.com/github-btn.html?user=' + org + '&repo=' + repo + '&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>',
-            '</td>',
-          '</tr>'
-        );
-      });
-      tbody.innerHTML = html.join('\n');
+      class Stats {
+        constructor() {
+          this.libs = [
+            'yahoo/fluxible',
+            'goatslacker/alt',
+            'acdlite/flummox',
+            'BinaryMuse/fluxxor',
+            'martyjs/marty',
+            'kenwheeler/mcfly',
+            'spoike/refluxjs'
+          ];
+          this.tbody = document.getElementsByTagName('tbody')[0];
+        }
+
+        render() {
+          const html = this.libs.map(lib => {
+            const [org, repo] = lib.split('/');
+            return `
+              <tr>
+                <td>
+                  <a href="https://github.com/${org}/${repo}">
+                    <strong>${repo}</strong>
+                  </a>
+                </td>
+                <td>
+                  <iframe src="https://ghbtns.com/github-btn.html?user=${org}&repo=${repo}&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+                </td>
+                <td>
+                <iframe src="https://ghbtns.com/github-btn.html?user=${org}&repo=${repo}&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
+                </td>
+              </tr>
+            `;
+          });
+          this.tbody.innerHTML = html.join('\n');
+        }
+      }
+
+      const stats = new Stats();
+      stats.render();
     }());
     </script>
-
   </body>
 </html>
